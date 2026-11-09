@@ -1,60 +1,54 @@
+import 'pretendard/dist/web/variable/pretendardvariable-dynamic-subset.css'
 import './style.css'
-import heroImg from './assets/hero.png'
-import javascriptLogo from './assets/javascript.svg'
-import viteLogo from './assets/vite.svg'
-import { setupCounter } from './counter.js'
+import { startBackground } from './background.js'
 
-document.querySelector('#app').innerHTML = `
-<section id="center">
-  <div class="hero">
-    <img src="${heroImg}" class="base" width="170" height="179">
-    <img src="${javascriptLogo}" class="framework" alt="JavaScript logo"/>
-    <img src="${viteLogo}" class="vite" alt="Vite logo" />
-  </div>
-  <div>
-    <h1>Get started</h1>
-    <p>Edit <code>src/main.js</code> and save to test <code>HMR</code></p>
-  </div>
-  <button id="counter" type="button" class="counter"></button>
-</section>
+const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+const canHover = window.matchMedia('(hover: hover)').matches
 
-<div class="ticks"></div>
+startBackground(document.querySelector('#math-bg'), { animate: !reducedMotion })
 
-<section id="next-steps">
-  <div id="docs">
-    <svg class="icon" role="presentation" aria-hidden="true"><use href="/icons.svg#documentation-icon"></use></svg>
-    <h2>Documentation</h2>
-    <p>Your questions, answered</p>
-    <ul>
-      <li>
-        <a href="https://vite.dev/" target="_blank">
-          <img class="logo" src="${viteLogo}" alt="" />
-          Explore Vite
-        </a>
-      </li>
-      <li>
-        <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank">
-          <img class="button-icon" src="${javascriptLogo}" alt="">
-          Learn more
-        </a>
-      </li>
-    </ul>
-  </div>
-  <div id="social">
-    <svg class="icon" role="presentation" aria-hidden="true"><use href="/icons.svg#social-icon"></use></svg>
-    <h2>Connect with us</h2>
-    <p>Join the Vite community</p>
-    <ul>
-      <li><a href="https://github.com/vitejs/vite" target="_blank"><svg class="button-icon" role="presentation" aria-hidden="true"><use href="/icons.svg#github-icon"></use></svg>GitHub</a></li>
-      <li><a href="https://chat.vite.dev/" target="_blank"><svg class="button-icon" role="presentation" aria-hidden="true"><use href="/icons.svg#discord-icon"></use></svg>Discord</a></li>
-      <li><a href="https://x.com/vite_js" target="_blank"><svg class="button-icon" role="presentation" aria-hidden="true"><use href="/icons.svg#x-icon"></use></svg>X.com</a></li>
-      <li><a href="https://bsky.app/profile/vite.dev" target="_blank"><svg class="button-icon" role="presentation" aria-hidden="true"><use href="/icons.svg#bluesky-icon"></use></svg>Bluesky</a></li>
-    </ul>
-  </div>
-</section>
+// 스크롤에 따라 콘텐츠 표시
+const revealItems = document.querySelectorAll('.reveal')
 
-<div class="ticks"></div>
-<section id="spacer"></section>
-`
+if (reducedMotion || !('IntersectionObserver' in window)) {
+  revealItems.forEach((item) => item.classList.add('is-visible'))
+} else {
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return
+        entry.target.classList.add('is-visible')
+        observer.unobserve(entry.target)
+      })
+    },
+    { threshold: 0.12, rootMargin: '0px 0px -6% 0px' },
+  )
+  revealItems.forEach((item) => observer.observe(item))
+}
 
-setupCounter(document.querySelector('#counter'))
+// 마우스 위치에 반응하는 카드
+document.querySelectorAll('.card, .interest').forEach((card) => {
+  if (!canHover) return
+
+  card.addEventListener('pointermove', (event) => {
+    const box = card.getBoundingClientRect()
+    const x = (event.clientX - box.left) / box.width
+    const y = (event.clientY - box.top) / box.height
+    card.style.setProperty('--mx', `${x * 100}%`)
+    card.style.setProperty('--my', `${y * 100}%`)
+    if (!reducedMotion && card.classList.contains('card')) {
+      card.style.setProperty('--ry', `${(x - 0.5) * 10}deg`)
+      card.style.setProperty('--rx', `${(0.5 - y) * 10}deg`)
+    }
+  })
+
+  card.addEventListener('pointerleave', () => {
+    card.style.setProperty('--rx', '0deg')
+    card.style.setProperty('--ry', '0deg')
+  })
+})
+
+// 아직 주소를 넣지 않은 임시 링크는 이동하지 않도록 처리
+document.querySelectorAll('[data-todo-link]').forEach((link) => {
+  link.addEventListener('click', (event) => event.preventDefault())
+})

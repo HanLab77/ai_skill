@@ -1,16 +1,142 @@
 <!doctype html>
-<html lang="en">
+<html lang="ko">
 
 <head>
   <meta charset="UTF-8" />
-  <meta charset="UTF-8" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ai_skill</title>
+  <meta name="description" content="교실에서 질문하고, 연구로 가능성을 넓히는 수학교사의 자기소개 페이지" />
+  <title>[이름] | 수학교육 연구자</title>
 </head>
 
 <body>
-  <div id="app"></div>
+  <!-- 수정 안내: 대괄호로 표시된 class="todo" 문구를 실제 내용으로 바꾸고 class="todo"를 지우면 됩니다. -->
+  <canvas id="math-bg" aria-hidden="true"></canvas>
+
+  <header class="nav">
+    <a class="nav-brand" href="#top">y = <span class="todo">[이름]</span></a>
+    <nav aria-label="주요 메뉴">
+      <a href="#philosophy">철학</a>
+      <a href="#research">연구</a>
+      <a href="#projects">프로젝트</a>
+      <a href="#contact">연락처</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <!-- 1. 첫 화면 -->
+    <section class="hero">
+      <p class="eyebrow reveal">Mathematics Education · Teaching &amp; Research</p>
+      <h1 class="hero-name gradient-text reveal"><span>[이름]</span></h1>
+      <p class="hero-tagline reveal">교실에서 질문하고,<br />연구로 가능성을 넓히는 <em class="gradient-text">수학교사</em></p>
+      <p class="hero-intro reveal"><span class="todo">[짧은 자기소개를 두세 문장으로 적어 주세요.]</span></p>
+      <div class="hero-actions reveal">
+        <a class="btn btn-primary" href="#philosophy">나의 이야기</a>
+        <a class="btn btn-ghost" href="#research">연구 및 프로젝트</a>
+      </div>
+    </section>
+
+    <!-- 2. 나의 교육 철학 -->
+    <section class="section" id="philosophy">
+      <div class="section-head reveal">
+        <p class="section-index">f(1)</p>
+        <h2>나의 교육 철학</h2>
+      </div>
+      <div class="card-grid">
+        <article class="card reveal">
+          <span class="card-symbol" aria-hidden="true">?</span>
+          <h3>학생의 생각에서 출발하는 수업</h3>
+          <p><span class="todo">[이 철학에 대한 설명을 적어 주세요.]</span></p>
+        </article>
+        <article class="card reveal">
+          <span class="card-symbol" aria-hidden="true">⇄</span>
+          <h3>탐구와 대화를 통한 수학 학습</h3>
+          <p><span class="todo">[이 철학에 대한 설명을 적어 주세요.]</span></p>
+        </article>
+        <article class="card reveal">
+          <span class="card-symbol" aria-hidden="true">∞</span>
+          <h3>기술을 활용한 배움의 확장</h3>
+          <p><span class="todo">[이 철학에 대한 설명을 적어 주세요.]</span></p>
+        </article>
+      </div>
+    </section>
+
+    <!-- 3. 주요 연구 관심사 -->
+    <section class="section" id="research">
+      <div class="section-head reveal">
+        <p class="section-index">f(2)</p>
+        <h2>주요 연구 관심사</h2>
+      </div>
+      <ol class="interest-list">
+        <li class="interest reveal">
+          <span class="interest-axis" aria-hidden="true">x₁</span>
+          <div>
+            <h3>수학교육과 교사교육</h3>
+            <p><span class="todo">[관심 주제에 대한 설명을 적어 주세요.]</span></p>
+          </div>
+        </li>
+        <li class="interest reveal">
+          <span class="interest-axis" aria-hidden="true">x₂</span>
+          <div>
+            <h3>AI와 디지털 도구를 활용한 수학 수업</h3>
+            <p><span class="todo">[관심 주제에 대한 설명을 적어 주세요.]</span></p>
+          </div>
+        </li>
+        <li class="interest reveal">
+          <span class="interest-axis" aria-hidden="true">x₃</span>
+          <div>
+            <h3>학생의 수학적 사고와 학습 과정</h3>
+            <p><span class="todo">[관심 주제에 대한 설명을 적어 주세요.]</span></p>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <!-- 4. 수업 및 연구 프로젝트: href="#"을 실제 주소로 바꾸고 data-todo-link를 지우면 링크가 동작합니다. -->
+    <section class="section" id="projects">
+      <div class="section-head reveal">
+        <p class="section-index">f(3)</p>
+        <h2>수업 및 연구 프로젝트</h2>
+      </div>
+      <div class="card-grid">
+        <article class="card project reveal">
+          <p class="project-tag">Project 01</p>
+          <h3><span class="todo">[프로젝트 제목]</span></h3>
+          <p><span class="todo">[프로젝트에 대한 간단한 설명을 적어 주세요.]</span></p>
+          <a class="card-link" href="#" data-todo-link><span class="todo">[관련 링크]</span> <span aria-hidden="true">→</span></a>
+        </article>
+        <article class="card project reveal">
+          <p class="project-tag">Project 02</p>
+          <h3><span class="todo">[프로젝트 제목]</span></h3>
+          <p><span class="todo">[프로젝트에 대한 간단한 설명을 적어 주세요.]</span></p>
+          <a class="card-link" href="#" data-todo-link><span class="todo">[관련 링크]</span> <span aria-hidden="true">→</span></a>
+        </article>
+        <article class="card project reveal">
+          <p class="project-tag">Project 03</p>
+          <h3><span class="todo">[프로젝트 제목]</span></h3>
+          <p><span class="todo">[프로젝트에 대한 간단한 설명을 적어 주세요.]</span></p>
+          <a class="card-link" href="#" data-todo-link><span class="todo">[관련 링크]</span> <span aria-hidden="true">→</span></a>
+        </article>
+      </div>
+    </section>
+
+    <!-- 5. 연락처 -->
+    <section class="section" id="contact">
+      <div class="contact-panel reveal">
+        <p class="section-index">f(4)</p>
+        <h2>연락처</h2>
+        <div class="contact-links">
+          <a class="btn btn-primary" href="#" data-todo-link><span>[이메일 주소]</span></a>
+          <a class="btn btn-ghost" href="#" data-todo-link><span>[관련 사이트]</span></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>© <span class="todo">[이름]</span></p>
+  </footer>
+
   <script type="module" src="/src/main.js"></script>
 </body>
 
